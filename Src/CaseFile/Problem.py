@@ -11,7 +11,7 @@ class Problem:
         self.__situation = situation
         self.__question = question
 
-    def __eq__(self, probleme2):
+    def __eq__(self, probleme2) -> bool:
         if isinstance(probleme2, Problem):
             return (
                 self.getSituation() == probleme2.getSituation()

@@ -7,6 +7,10 @@ class Question(ABC):
         pass
 
     @abstractmethod
+    def isEquivalentUnderMapping(self, other_question, mapping: dict) -> bool:
+        pass
+    
+    @abstractmethod
     def __eq__(self, other):
         pass
 

@@ -4,7 +4,8 @@ import networkx as nx
 
 class GraphConverter:
     # Convert a argument framework in a graph of networkx take in  input a ArgFramework object and output a nxDiGraph
-    def afToNetworkX(self, Af: ArgFramework):
+    @staticmethod
+    def afToNetworkX(Af: ArgFramework) -> nx.DiGraph:
         # Check the type entry
         if not isinstance(Af, ArgFramework):
             raise TypeError("need a ArgFramework object")
@@ -17,3 +18,8 @@ class GraphConverter:
         for att in Af.iterAttack():
             G.add_edge(att.getFromArg().getIndex(), att.getToArg().getIndex())
         return G
+    
+    @staticmethod
+    def computeWeisfeilerLehmanHash(af: ArgFramework) -> str:
+        G = GraphConverter.afToNetworkX(af)
+        return nx.weisfeiler_lehman_graph_hash(G)

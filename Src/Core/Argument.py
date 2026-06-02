@@ -7,13 +7,13 @@ class Argument:
         self.__index = index
 
     # Magic method to compare 2 arguments by the index arg1==arg2 if he has the same index
-    def __eq__(self, arg):
+    def __eq__(self, arg) -> bool:
         if isinstance(arg, Argument):
             return self.getIndex() == arg.getIndex()
         return False
 
     # Returns the hash value of the object based on its index
-    def __hash__(self):
+    def __hash__(self) -> hash:
         return hash(self.getIndex())
 
     def __repr__(self):

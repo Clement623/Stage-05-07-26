@@ -24,7 +24,7 @@ class Parser:
         return self.__content
 
     # Principal method use the method adapt to the good extension
-    def parse(self):
+    def parse(self) -> ArgFramework:
         framework = ArgFramework()
         # af file
         ext = self.getExtension()

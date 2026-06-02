@@ -5,7 +5,7 @@ from Src.ExtFile.Semantics import Semantics
 
 
 class Complete(Semantics):
-    def isExtension(self, af: ArgFramework, ext: Extension):
+    def isExtension(self, af: ArgFramework, ext: Extension) -> bool:
 
         if not isinstance(ext, Extension):
             raise TypeError("ext need to be an Extension")

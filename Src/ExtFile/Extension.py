@@ -15,7 +15,7 @@ class Extension:
     def iterExtArgument(self):
         return iter(self.getExtArgument())
 
-    def isInExtension(self, arg: Argument):
+    def isInExtension(self, arg: Argument) -> bool:
         if not isinstance(arg, Argument):
             raise TypeError("need a argument in input")
         return arg in self.getExtArgument()

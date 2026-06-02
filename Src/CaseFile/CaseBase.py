@@ -9,8 +9,11 @@ class CaseBase:
     def getListCase(self):
         return self.__cases
 
+    def iterListCase(self):
+        return iter(self.getListCase())
+
     # Check if a Case is in the Case Base
-    def isExactlyInBase(self, case: Case):
+    def isExactlyInBase(self, case: Case) -> bool:
         if not isinstance(case, Case):
             raise TypeError("case need to be a Case")
         return case in self.getListCase()

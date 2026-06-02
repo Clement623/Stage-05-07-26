@@ -12,17 +12,17 @@ class Attack:
         self.__fromArg = fromArg
         self.__toArg = toArg
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.getFromArg().getIndex()}->{self.getToArg().getIndex()}"
 
-    def __eq__(self, att):
+    def __eq__(self, att) -> bool:
         if isinstance(att, Attack):
             return (self.getFromArg() == att.getFromArg()) and (
                 self.getToArg() == att.getToArg()
             )
         return False
 
-    def __hash__(self):
+    def __hash__(self) -> hash:
         return hash((self.getFromArg(), self.getToArg()))
 
     def getFromArg(self):

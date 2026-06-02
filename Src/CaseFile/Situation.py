@@ -1,4 +1,4 @@
-from Src.Core.argFramework import ArgFramework
+from Src.Core.ArgFramework import ArgFramework
 
 
 class Situation:
@@ -10,7 +10,7 @@ class Situation:
     def getAF(self):
         return self.__AF
 
-    def __eq__(self, framework2):
+    def __eq__(self, framework2) -> bool:
         if isinstance(framework2, Situation):
             return self.getAF() == framework2.getAF()
         return False

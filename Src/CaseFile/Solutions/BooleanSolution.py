@@ -12,10 +12,10 @@ class BooleanSolution(Solution):
     def getAnswer(self):
         return self.__answer
 
-    def __eq__(self, Solution2):
+    def __eq__(self, Solution2) -> bool:
         if isinstance(Solution2, BooleanSolution):
             return self.getAnswer() == Solution2.getAnswer()
         return False
 
-    def __str__(self):
+    def __str__(self) -> str:
         return str(self.getAnswer())

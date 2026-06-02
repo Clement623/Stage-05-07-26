@@ -23,8 +23,19 @@ class XinExtension(Question):
 
     def getSemantics(self):
         return self.__semantics
+    
+    def isEquivalentUnderMapping(self, other_question, mapping: dict) -> bool:
+        if not isinstance(other_question, XinExtension):
+            return False
+        if self.getSemantics() != other_question.getSemantics():
+            return False
+            
+        current_target_index = self.getArgument().getIndex()
+        mapped_index = mapping.get(current_target_index)
 
-    def __eq__(self, other):
+        return mapped_index == other_question.getArgument().getIndex()
+
+    def __eq__(self, other) -> bool:
         if isinstance(other, XinExtension):
             return (
                 self.getArgument() == other.getArgument()
@@ -32,5 +43,5 @@ class XinExtension(Question):
             )
         return False
 
-    def __hash__(self):
+    def __hash__(self) -> hash:
         return hash((self.getArgument(), self.getSemantics()))

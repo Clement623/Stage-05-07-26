@@ -38,7 +38,7 @@ class ArgFramework:
         return iter(self.getArguments())
 
     def iterAttack(self):
-        return iter(self.getAttacks)
+        return iter(self.getAttacks())
 
     # Method to add a argument to the framework
     def addArgument(self, arg: Argument):
@@ -102,7 +102,7 @@ class ArgFramework:
             self.getTarget()[att.getFromArg()].discard(att.getToArg())
             self.getAttackedBy()[att.getToArg()].discard(att.getFromArg())
 
-    def __eq__(self, AF2):
+    def __eq__(self, AF2) -> bool:
         if isinstance(AF2, ArgFramework):
             return (
                 self.getArguments() == AF2.getArguments()
