@@ -9,7 +9,7 @@ class BooleanSolution(Solution):
             raise TypeError("need a bool")
         self.__answer = answer
 
-    def getAnswer(self):
+    def getAnswer(self) -> bool:
         return self.__answer
 
     def __eq__(self, Solution2) -> bool:

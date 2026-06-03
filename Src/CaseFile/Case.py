@@ -2,6 +2,7 @@ from Src.CaseFile.Problem import Problem
 from Src.CaseFile.Solutions.Solution import Solution
 from Src.CaseFile.GraphConverter import GraphConverter
 
+
 class Case:
     # A case take a problem and a solution in input
     def __init__(self, problem: Problem, solution: Solution):
@@ -12,15 +13,17 @@ class Case:
             raise TypeError("solution need to be a Solution")
         self.__problem = problem
         self.__solution = solution
-        self.__hashGraph=GraphConverter.computeWeisfeilerLehmanHash(self.getProblem().getSituation().getAF())
+        self.__hashGraph = GraphConverter.computeWeisfeilerLehmanHash(
+            self.getProblem().getSituation().getAF()
+        )
 
-    def getProblem(self):
+    def getProblem(self) -> Problem:
         return self.__problem
 
-    def getSolution(self):
+    def getSolution(self) -> Solution:
         return self.__solution
 
-    def getHashGraph(self):
+    def getHashGraph(self) -> str:
         return self.__hashGraph
 
     def __eq__(self, case2) -> bool:

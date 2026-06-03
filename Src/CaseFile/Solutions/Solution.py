@@ -3,13 +3,13 @@ from abc import ABC, abstractmethod
 
 class Solution(ABC):
     @abstractmethod
-    def getAnswer(self):
+    def getAnswer(self) -> any:
         pass
 
     @abstractmethod
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         pass
 
     @abstractmethod
-    def __hash__(self):
+    def __hash__(self) -> hash:
         pass

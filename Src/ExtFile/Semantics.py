@@ -6,7 +6,7 @@ from Src.Core.Argument import Argument
 
 class Semantics(ABC):
     @abstractmethod
-    def isExtension(self):
+    def isExtension(self) -> bool:
         pass
 
     @abstractmethod
@@ -31,3 +31,8 @@ class Semantics(ABC):
             ):
                 return False
         return True
+    
+    def __eq__(self, other):
+        if type(self) is type(other):  
+            return True
+        return False

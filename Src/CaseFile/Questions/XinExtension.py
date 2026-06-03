@@ -15,21 +15,21 @@ class XinExtension(Question):
         self.__argument = argument
         self.__semantics = semantics
 
-    def getAnswerType(self):
+    def getAnswerType(self) -> bool:
         return bool
 
-    def getArgument(self):
+    def getArgument(self) -> Argument:
         return self.__argument
 
-    def getSemantics(self):
+    def getSemantics(self) -> Semantics:
         return self.__semantics
-    
+
     def isEquivalentUnderMapping(self, other_question, mapping: dict) -> bool:
         if not isinstance(other_question, XinExtension):
             return False
         if self.getSemantics() != other_question.getSemantics():
             return False
-            
+
         current_target_index = self.getArgument().getIndex()
         mapped_index = mapping.get(current_target_index)
 

@@ -9,10 +9,10 @@ class Extension:
             raise TypeError("all elements need to be Arguments")
         self.__arguments = arguments
 
-    def getExtArgument(self):
+    def getExtArgument(self) -> set[Argument]:
         return self.__arguments
 
-    def iterExtArgument(self):
+    def iterExtArgument(self) -> iter:
         return iter(self.getExtArgument())
 
     def isInExtension(self, arg: Argument) -> bool:

@@ -7,7 +7,7 @@ class Situation:
             raise TypeError("framework need to be a Argument Framework")
         self.__AF = framework
 
-    def getAF(self):
+    def getAF(self) -> ArgFramework:
         return self.__AF
 
     def __eq__(self, framework2) -> bool:

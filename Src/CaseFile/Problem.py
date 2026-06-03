@@ -19,8 +19,8 @@ class Problem:
             )
         return False
 
-    def getSituation(self):
+    def getSituation(self) -> Situation:
         return self.__situation
 
-    def getQuestion(self):
+    def getQuestion(self) -> Question:
         return self.__question

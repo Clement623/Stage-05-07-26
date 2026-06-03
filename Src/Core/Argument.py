@@ -16,8 +16,8 @@ class Argument:
     def __hash__(self) -> hash:
         return hash(self.getIndex())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.getIndex()}"
 
-    def getIndex(self):
+    def getIndex(self) -> int:
         return self.__index

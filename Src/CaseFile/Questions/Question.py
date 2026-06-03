@@ -9,11 +9,11 @@ class Question(ABC):
     @abstractmethod
     def isEquivalentUnderMapping(self, other_question, mapping: dict) -> bool:
         pass
-    
+
     @abstractmethod
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         pass
 
     @abstractmethod
-    def __hash__(self):
+    def __hash__(self) -> hash:
         pass

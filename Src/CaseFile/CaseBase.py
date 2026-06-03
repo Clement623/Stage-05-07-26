@@ -6,10 +6,10 @@ class CaseBase:
     def __init__(self):
         self.__cases = []
 
-    def getListCase(self):
+    def getListCase(self) -> list:
         return self.__cases
 
-    def iterListCase(self):
+    def iterListCase(self) -> iter:
         return iter(self.getListCase())
 
     # Check if a Case is in the Case Base
@@ -19,14 +19,14 @@ class CaseBase:
         return case in self.getListCase()
 
     # Add a Case of the Case Base
-    def addCase(self, case: Case):
+    def addCase(self, case: Case) -> None:
         if not isinstance(case, Case):
             raise TypeError("case need to be a Case")
         if not self.isExactlyInBase(case):
             self.__cases.append(case)
 
     # Remove a Case of the Case Base
-    def removeCase(self, case: Case):
+    def removeCase(self, case: Case) -> None:
         if not isinstance(case, Case):
             raise TypeError("case need to be a Case")
         if not self.isExactlyInBase(case):

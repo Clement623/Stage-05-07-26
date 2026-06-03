@@ -17,10 +17,10 @@ class Parser:
                 "\n"
             )  # read the content and split by return of the line, self.content = list of string
 
-    def getExtension(self):
+    def getExtension(self) -> str:
         return self.__extension
 
-    def getContent(self):
+    def getContent(self) -> str:
         return self.__content
 
     # Principal method use the method adapt to the good extension
@@ -36,7 +36,7 @@ class Parser:
         return framework
 
     # The parser for the af File, input: framework = ArgFramework object
-    def parseafFile(self, framework):
+    def parseafFile(self, framework) -> None:
         # First part, the arguments: p as nb , the regex take off the nb to create arguments
         content = self.getContent()
         nbArgument = int(re.search(r"\D+(\d+)$", content[0]).group(1))
@@ -55,7 +55,7 @@ class Parser:
                 # Add the attack in the framework
 
     # The parser for the apx File, input: framework = ArgFramework object
-    def parseapxFile(self, framework):
+    def parseapxFile(self, framework) -> None:
         # process line by line
         content = self.getContent()
         for element in content:

@@ -14,11 +14,12 @@ class GraphConverter:
         # Argument=node
         for arg in Af.iterArgument():
             G.add_node(arg.getIndex())
-        # Attack=edge
-        for att in Af.iterAttack():
+
+        for att in Af.getAttacks():
             G.add_edge(att.getFromArg().getIndex(), att.getToArg().getIndex())
+            
         return G
-    
+
     @staticmethod
     def computeWeisfeilerLehmanHash(af: ArgFramework) -> str:
         G = GraphConverter.afToNetworkX(af)

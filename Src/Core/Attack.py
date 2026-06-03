@@ -25,8 +25,8 @@ class Attack:
     def __hash__(self) -> hash:
         return hash((self.getFromArg(), self.getToArg()))
 
-    def getFromArg(self):
+    def getFromArg(self) -> Argument:
         return self.__fromArg
 
-    def getToArg(self):
+    def getToArg(self) -> Argument:
         return self.__toArg
