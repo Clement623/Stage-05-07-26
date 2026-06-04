@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-
+#Abstract class to define a solution
 class Solution(ABC):
     @abstractmethod
     def getAnswer(self) -> any:

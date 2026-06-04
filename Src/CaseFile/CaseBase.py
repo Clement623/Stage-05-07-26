@@ -1,38 +1,40 @@
-from Src.CaseFile.Case import Case
+from Src.CaseFile.Case import Case 
 
+class CaseBase:     
+    # Initialize an empty list of cases
+    def __init__(self):         
+        self.__cases = []     
 
-# Class to represent the Case Base
-class CaseBase:
-    def __init__(self):
-        self.__cases = []
+    # Get the list of all cases
+    def getListCase(self) -> list:         
+        return self.__cases     
 
-    def getListCase(self) -> list:
-        return self.__cases
+    # Get an iterator for the list of cases
+    def iterListCase(self) -> iter:         
+        return iter(self.getListCase())     
 
-    def iterListCase(self) -> iter:
-        return iter(self.getListCase())
+    # Check if a case is already in the case base
+    def isExactlyInBase(self, case: Case) -> bool:         
+        if not isinstance(case, Case):             
+            raise TypeError("case need to be a Case")         
+        return case in self.getListCase()     
 
-    # Check if a Case is in the Case Base
-    def isExactlyInBase(self, case: Case) -> bool:
-        if not isinstance(case, Case):
-            raise TypeError("case need to be a Case")
-        return case in self.getListCase()
+    # Add a case to the case base if it is not already there
+    def addCase(self, case: Case) -> None:         
+        if not isinstance(case, Case):             
+            raise TypeError("case need to be a Case")         
+        if not self.isExactlyInBase(case):             
+            self.__cases.append(case)     
 
-    # Add a Case of the Case Base
-    def addCase(self, case: Case) -> None:
-        if not isinstance(case, Case):
-            raise TypeError("case need to be a Case")
-        if not self.isExactlyInBase(case):
-            self.__cases.append(case)
+    # Remove a case from the case base
+    def removeCase(self, case: Case) -> None:         
+        if not isinstance(case, Case):             
+            raise TypeError("case need to be a Case")         
+        if not self.isExactlyInBase(case):             
+            raise ValueError(f"{case} not in Cases")         
+        self.__cases.remove(case)     
 
-    # Remove a Case of the Case Base
-    def removeCase(self, case: Case) -> None:
-        if not isinstance(case, Case):
-            raise TypeError("case need to be a Case")
-        if not self.isExactlyInBase(case):
-            raise ValueError(f"{case} not in Cases")
-        self.__cases.remove(case)
-
-    def afficherBase(self):
-        for case in self.iterCases():
+    # Print all cases in the case base
+    def afficherBase(self):         
+        for case in self.iterCases():             
             print(case)

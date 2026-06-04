@@ -1,11 +1,11 @@
 from Src.CaseFile.CaseBase import CaseBase
 from Src.CaseFile.GraphConverter import GraphConverter
-from Src.Solver.Specialist.Specialist import Specialist
+from Src.Solver.ProblemSpecialist.ProblemSpecialist import ProblemSpecialist
 from networkx.algorithms.isomorphism import DiGraphMatcher
 from Src.CaseFile.Solutions.Solution import Solution
+from Src.Solver.SolutionSpecialist.AdaptSolutionSpecialist.AdaptIsomorphSolution import AdaptIsomorphSolution
 
-
-class IsomorphismSpecialist(Specialist):
+class IsomorphismSpecialist(ProblemSpecialist):
     def __init__(self, base: CaseBase):
         super().__init__()
         self.__base = base
@@ -40,5 +40,8 @@ class IsomorphismSpecialist(Specialist):
         case_question = case.getProblem().getQuestion()
         for mapping in matcher.isomorphisms_iter():
             if current_question.isEquivalentUnderMapping(case_question, mapping):
-                return case.getSolution()
+                adapt=AdaptIsomorphSolution()
+                adapt.setSolution(case.getSolution())
+                adapt.setMapping(mapping)
+                return adapt.adapt()
         return None

@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from Src.CaseFile.Problem import Problem
 
 
-class Specialist(ABC):
+class ProblemSpecialist(ABC):
     def __init__(self):
         self.__problem = None
 

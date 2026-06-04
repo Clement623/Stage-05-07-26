@@ -42,7 +42,6 @@ class Parser:
         nbArgument = int(re.search(r"\D+(\d+)$", content[0]).group(1))
         for i in range(1, nbArgument + 1):
             framework.addArgument(Argument(i))
-        framework.lastIndex += nbArgument
         # Second part, the attacks
         for attack in content[1:]:
             if attack and "#" != attack[0]:
@@ -66,7 +65,6 @@ class Parser:
                 if arguments:
                     # Add argument to the framework
                     framework.addArgument(Argument(int(arguments[0])))
-                    framework.lastIndex += 1
                 if attacks:
                     # Add attack
                     fromArg = Argument(int(attacks[0][0]))

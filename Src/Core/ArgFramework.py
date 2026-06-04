@@ -27,12 +27,12 @@ class ArgFramework:
 
     def getAttackedBy(self) -> dict:
         return self.__attackedBy
-    
+
     def getNextAvailableIndex(self) -> int:
         if not self.__arguments:
             return 1
         return max(arg.getIndex() for arg in self.__arguments) + 1
-        
+
     def isInArguments(self, arg: Argument) -> bool:
         return arg in self.getArguments()
 

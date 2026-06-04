@@ -5,6 +5,7 @@ from Src.ExtFile.Semantics import Semantics
 
 
 class Complete(Semantics):
+    #test if a extension is complete
     def isExtension(self, af: ArgFramework, ext: Extension) -> bool:
 
         if not isinstance(ext, Extension):

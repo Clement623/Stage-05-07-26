@@ -1,4 +1,6 @@
-from Src.Solver.Specialist.TransformationSpecialist.TransformationSpecialist import TransformationSpecialist
+from Src.Solver.ProblemSpecialist.TransformationSpecialist.TransformationSpecialist import (
+    TransformationSpecialist,
+)
 from Src.Core.ArgFramework import ArgFramework
 from Src.Core.Attack import Attack
 from Src.Core.Argument import Argument

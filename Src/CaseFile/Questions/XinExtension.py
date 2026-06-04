@@ -14,16 +14,16 @@ class XinExtension(Question):
             raise TypeError("need a Semantics object")
         self.__argument = argument
         self.__semantics = semantics
-
+    #get the type of the answer 
     def getAnswerType(self) -> bool:
         return bool
-
+    #get argument x
     def getArgument(self) -> Argument:
         return self.__argument
-
+    #get the semantics 
     def getSemantics(self) -> Semantics:
         return self.__semantics
-
+    #check if the question is equivalent after a mapping
     def isEquivalentUnderMapping(self, other_question, mapping: dict) -> bool:
         if not isinstance(other_question, XinExtension):
             return False
@@ -34,7 +34,7 @@ class XinExtension(Question):
         mapped_index = mapping.get(current_target_index)
 
         return mapped_index == other_question.getArgument().getIndex()
-
+    #check the egality in two XinExtension object
     def __eq__(self, other) -> bool:
         if isinstance(other, XinExtension):
             return (

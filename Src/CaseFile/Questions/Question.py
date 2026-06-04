@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-
+#abstract class to define a question
 class Question(ABC):
     @abstractmethod
     def getAnswerType(self):
