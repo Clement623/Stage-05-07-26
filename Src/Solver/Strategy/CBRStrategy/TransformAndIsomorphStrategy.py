@@ -1,11 +1,14 @@
-from Src.Solver.Strategy.Strategy import Strategy
-from Src.CaseFile.CaseBase import CaseBase
-from Src.Solver.ProblemSpecialist.IsomorphismSpecialist import IsomorphismSpecialist
-from Src.CaseFile.Problem import Problem
-from Src.Solver.ProblemSpecialist.TransformationSpecialist.ArgumentTransformationSpecialist import (
+from Src.Solver.SolutionSpecialist.AdaptSolutionSpecialist.AdaptReductionSolution import (
+    AdaptReductionSolution,
+)
+from Src.Solver.Specialist.TransformationSpecialist.ArgumentTransformationSpecialist import (
     ArgumentTransformationSpecialist,
 )
-from Src.Solver.SolutionSpecialist.AdaptSolutionSpecialist.AdaptReductionSolution import AdaptReductionSolution
+
+from Src.CaseFile.CaseBase import CaseBase
+from Src.CaseFile.Problem import Problem
+from Src.Solver.Specialist.IsomorphismSpecialist import IsomorphismSpecialist
+from Src.Solver.Strategy.Strategy import Strategy
 
 
 class TransformAndIsomorphStrategy(Strategy):
@@ -40,6 +43,7 @@ class TransformAndIsomorphStrategy(Strategy):
 
             return reduction_specialist.adapt()
         return None
+
     def solve(self, problem: Problem):
         results = self.tryDirectisomorphism(problem)
         if results is not None:

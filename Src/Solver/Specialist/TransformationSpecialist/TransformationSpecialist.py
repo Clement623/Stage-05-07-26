@@ -1,10 +1,11 @@
 import copy
-from Src.Solver.ProblemSpecialist.ProblemSpecialist import ProblemSpecialist
 from abc import abstractmethod
+
 from Src.CaseFile.Problem import Problem
+from Src.Solver.Specialist.Specialist import Specialist
 
 
-class TransformationSpecialist(ProblemSpecialist):
+class TransformationSpecialist(Specialist):
     def __init__(self):
         super().__init__()
 

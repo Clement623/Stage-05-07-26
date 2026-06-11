@@ -1,12 +1,10 @@
-from Src.Solver.ProblemSpecialist.TransformationSpecialist.TransformationSpecialist import (
-    TransformationSpecialist,
-)
+from .TransformationSpecialist import TransformationSpecialist
 from Src.Core.ArgFramework import ArgFramework
 from Src.Core.Attack import Attack
 from Src.Core.Argument import Argument
 
 
-class AttackTransformationSpecialist(TransformationSpecialist):
+class AddAttackTransformationSpecialist(TransformationSpecialist):
     def __init__(self):
         super().__init__()
         self.__fromIndex = None

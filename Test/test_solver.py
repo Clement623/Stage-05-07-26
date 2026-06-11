@@ -2,31 +2,32 @@ import sys
 
 sys.path.insert(0, ".")
 
-from Src.Core.ArgFramework import ArgFramework
-from Src.Core.Argument import Argument
-from Src.Core.Attack import Attack
-from Src.CaseFile.Situation import Situation
-from Src.CaseFile.Problem import Problem
-from Src.CaseFile.Case import Case
-from Src.CaseFile.CaseBase import CaseBase
-from Src.CaseFile.GraphConverter import GraphConverter
-from Src.CaseFile.Questions.XinExtension import XinExtension
-from Src.CaseFile.Solutions.BooleanSolution import BooleanSolution
-from Src.ExtFile.Extension import Extension
-from Src.ExtFile.Admissible import Admissible
-from Src.ExtFile.Complete import Complete
-from Src.ExtFile.Stable import Stable
-from Src.Solver.ProblemSpecialist.IsomorphismSpecialist import IsomorphismSpecialist
-from Src.Solver.ProblemSpecialist.TransformationSpecialist.ArgumentTransformationSpecialist import (
+from Src.Solver.Specialist.TransformationSpecialist.ArgumentTransformationSpecialist import (
     ArgumentTransformationSpecialist,
 )
-from Src.Solver.ProblemSpecialist.TransformationSpecialist.AttackTransformationSpecialist import (
+from Src.Solver.Specialist.TransformationSpecialist.AttackTransformationSpecialist import (
     AttackTransformationSpecialist,
 )
 from Src.Solver.Strategy.TransformAndIsomorphStrategy import (
     TransformAndIsomorphStrategy,
 )
+
+from Src.CaseFile.Case import Case
+from Src.CaseFile.CaseBase import CaseBase
+from Src.CaseFile.GraphConverter import GraphConverter
+from Src.CaseFile.Problem import Problem
+from Src.CaseFile.Questions.XinExtension import XinExtension
+from Src.CaseFile.Situation import Situation
+from Src.CaseFile.Solutions.BooleanSolution import BooleanSolution
+from Src.Core.ArgFramework import ArgFramework
+from Src.Core.Argument import Argument
+from Src.Core.Attack import Attack
+from Src.ExtFile.Admissible import Admissible
+from Src.ExtFile.Complete import Complete
+from Src.ExtFile.Extension import Extension
+from Src.ExtFile.Stable import Stable
 from Src.Solver.Orchestrator import Orchestrator
+from Src.Solver.Specialist.IsomorphismSpecialist import IsomorphismSpecialist
 
 results = []
 

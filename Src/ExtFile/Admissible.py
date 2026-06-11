@@ -3,14 +3,15 @@ from Src.Core.ArgFramework import ArgFramework
 from Src.ExtFile.Extension import Extension
 from Src.Core.Argument import Argument
 
+
 class Admissible(Semantics):
     def isCredulouslyAccepted(self, AF: ArgFramework, arg: Argument) -> bool:
         pass
 
     def isSkepticallyAccepted(self, AF: ArgFramework, arg: Argument) -> bool:
         pass
-    
-    #test if a extension is admissible
+
+    # test if a extension is admissible
     def isExtension(self, af: ArgFramework, ext: Extension) -> bool:
 
         if not isinstance(ext, Extension):

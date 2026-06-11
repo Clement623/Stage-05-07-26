@@ -3,16 +3,18 @@ from Src.CaseFile.Solutions.Solution import Solution
 
 # Solution of the  type True or False
 class BooleanSolution(Solution):
-    #Initialize the object with a answer
+    # Initialize the object with a answer
     def __init__(self, answer):
         # check the type of input
         if answer is not None and not isinstance(answer, bool):
             raise TypeError("need a bool")
         self.__answer = answer
-    #get the answer
+
+    # get the answer
     def getAnswer(self) -> bool:
         return self.__answer
-    #check the egality with two BooleanSolution
+
+    # check the egality with two BooleanSolution
     def __eq__(self, Solution2) -> bool:
         if isinstance(Solution2, BooleanSolution):
             return self.getAnswer() == Solution2.getAnswer()

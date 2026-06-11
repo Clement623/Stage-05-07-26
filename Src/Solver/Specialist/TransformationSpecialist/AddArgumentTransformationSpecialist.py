@@ -1,11 +1,9 @@
-from Src.Solver.ProblemSpecialist.TransformationSpecialist.TransformationSpecialist import (
-    TransformationSpecialist,
-)
+from .TransformationSpecialist import TransformationSpecialist
 from Src.Core.ArgFramework import ArgFramework
 from Src.Core.Argument import Argument
 
 
-class ArgumentTransformationSpecialist(TransformationSpecialist):
+class AddArgumentTransformationSpecialist(TransformationSpecialist):
     def __init__(self):
         super().__init__()
 
@@ -13,4 +11,3 @@ class ArgumentTransformationSpecialist(TransformationSpecialist):
 
         newIndex = Af.getNextAvailableIndex()
         Af.addArgument(Argument(newIndex))
- 

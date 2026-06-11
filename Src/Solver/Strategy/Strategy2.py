@@ -1,9 +1,0 @@
-from Src.Solver.Strategy.Strategy import Strategy
-
-
-class Strategy2(Strategy):
-    def __init__(self):
-        super().__init__()
-
-    def solve(self):
-        pass
