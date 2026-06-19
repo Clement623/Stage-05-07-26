@@ -35,7 +35,7 @@ class CaseBase:
             raise ValueError(f"{case} not in Cases")
         self.__cases.remove(case)
 
-    # Print all cases in the case base
-    def afficherBase(self):
-        for case in self.iterCases():
-            print(case)
+    def __repr__(self):
+        nb_cases = len(self.__cases)
+        cases_repr = ", ".join(repr(c) for c in self.__cases)
+        return f"CaseBase(Total Cases: {nb_cases}, Cases: [{cases_repr}])"

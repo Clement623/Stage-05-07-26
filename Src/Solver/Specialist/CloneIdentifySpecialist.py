@@ -7,3 +7,5 @@ class CloneIdentifySpecialist(Specialist):
 
     def process(self):
         pass
+
+        

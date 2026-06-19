@@ -1,4 +1,6 @@
 from Src.Core.ArgFramework import ArgFramework
+from Src.Core.Argument import Argument
+from Src.Core.Attack import Attack
 import networkx as nx
 
 
@@ -16,6 +18,24 @@ class GraphConverter:
         for att in Af.getAttacks():
             G.add_edge(att.getFromArg().getIndex(), att.getToArg().getIndex())
         return G
+
+    # Convert a networkx DiGraph back into an argumentation framework
+    @staticmethod
+    def networkXToAf(G: nx.DiGraph) -> ArgFramework:
+        if not isinstance(G, nx.DiGraph):
+            raise TypeError("need a nx.DiGraph object")
+
+        af = ArgFramework()
+
+        # Add arguments (nodes)
+        for node in G.nodes():
+            af.addArgument(Argument(node))
+
+        # Add attacks (edges)
+        for u, v in G.edges():
+            af.addAttack(Attack(Argument(u), Argument(v)))
+
+        return af
 
     # Compute a unique hash value for the graph structure
     @staticmethod

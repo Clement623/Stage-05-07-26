@@ -18,8 +18,11 @@ class AllExtensions(Question):
     def getSemantics(self) -> Semantics:
         return self.__semantics
 
-    def isEquivalentUnderMapping(self, other_question) -> bool:
-        return isinstance(other_question, AllExtensions)
+    def isEquivalentUnderMapping(self, other_question,mapping=None) -> bool:
+        if not isinstance(other_question, AllExtensions):
+            return False
+        return self.getSemantics() == other_question.getSemantics()
+
 
     # check the egality in 2 AllExtensions Object
     def __eq__(self, other) -> bool:

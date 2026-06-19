@@ -72,14 +72,9 @@ class ArgFramework:
             }
             for att in to_remove:
                 self.removeAttack(att)
-            # Update two dict
-            for attacker in self.getTarget()[arg]:
-                self.getAttackedBy()[attacker].discard(arg)
-            for attacked in self.getAttackedBy()[arg]:
-                self.getTarget()[attacked].discard(arg)
             # Delete key
-            self.getTarget().pop(arg)
-            self.getAttackedBy().pop(arg)
+            self.getTarget().pop(arg, None)
+            self.getAttackedBy().pop(arg, None)
 
     # Method to add a attack to the framework
     def addAttack(self, att: Attack) -> None:
@@ -114,3 +109,8 @@ class ArgFramework:
                 and self.getAttacks() == AF2.getAttacks()
             )
         return False
+    
+    def __repr__(self):
+        args_str = ", ".join(str(arg) for arg in self.__arguments)
+        attacks_str = ", ".join(str(att) for att in self.__attacks)
+        return f"ArgFramework(Arguments: [{args_str}], Attacks: [{attacks_str}])"

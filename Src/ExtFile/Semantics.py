@@ -1,17 +1,18 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
 from abc import ABC, abstractmethod
 from Src.Core.ArgFramework import ArgFramework
-from Src.ExtFile.Extension import Extension
 from Src.Core.Argument import Argument
-
+if TYPE_CHECKING:
+    from Src.ExtFile.Extension import Extension
 
 # Abstract class to define a Semantics
 class Semantics(ABC):
+    def __init__(self):
+        super().__init__()
+
     @abstractmethod
-    def isExtension(
-        self,
-        af: ArgFramework,
-        ext: Extension,
-    ) -> bool:
+    def isExtension(self, af: ArgFramework, ext: Extension) -> bool:
         pass
 
     @abstractmethod

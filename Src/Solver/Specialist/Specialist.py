@@ -1,12 +1,11 @@
-from Src.Solver.Strategy.Strategy  import Strategy
 from Src.CaseFile.Problem import Problem
-from abc import abstractmethod
+from abc import ABC,abstractmethod
 
 
-
-class Specialist(Strategy):
+class Specialist(ABC):
     def __init__(self):
         super().__init__()
+        self.__problem = None
 
     @abstractmethod
     def process(self):
@@ -21,4 +20,3 @@ class Specialist(Strategy):
         if not isinstance(problem, Problem):
             raise TypeError("need a Problem Object")
         self.__problem = problem
-

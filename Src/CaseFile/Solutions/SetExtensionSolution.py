@@ -2,22 +2,22 @@ from Src.CaseFile.Solutions.Solution import Solution
 
 
 # Solution of the type List of Extensions
-class ListExtensionSolution(Solution):
+class SetExtensionSolution(Solution):
     # Initialize the object with a answer
-    def __init__(self, answer: list):
-        if not isinstance(answer, list):
-            raise TypeError("need a list of extensions")
+    def __init__(self, answer: set):
+        if not isinstance(answer, set):
+            raise TypeError("need a set of extensions")
         self.__answer = answer
 
     # get the answer
-    def getAnswer(self) -> list:
+    def getAnswer(self) -> set:
         return self.__answer
 
     # check the egality in two ListExtensionSolution object
     def __eq__(self, other) -> bool:
-        if isinstance(other, ListExtensionSolution):
+        if isinstance(other, SetExtensionSolution):
             return self.getAnswer() == other.getAnswer()
         return False
 
     def __hash__(self) -> int:
-        return hash(tuple(self.getAnswer()))
+        return hash(frozenset(self.getAnswer()))

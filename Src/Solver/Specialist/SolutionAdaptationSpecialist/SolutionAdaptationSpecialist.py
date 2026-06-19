@@ -1,7 +1,8 @@
-from abc import ABC, abstractmethod
+from abc import abstractmethod
+from Src.Solver.Specialist.Specialist import Specialist
 
 
-class SolutionAdaptationSpecialist(ABC):
+class SolutionAdaptationSpecialist(Specialist):
     def __init__(self):
         super().__init__()
 

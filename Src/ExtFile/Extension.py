@@ -1,14 +1,19 @@
 from Src.Core.Argument import Argument
+from Src.ExtFile.Semantics import Semantics
 
 
 class Extension:
     # Initialize a extension with a set of arguments
-    def __init__(self, arguments: set):
+    def __init__(self, arguments: set, semantics: Semantics = None):
         if not isinstance(arguments, set):
             raise TypeError("arguments need to be a set")
         if not all(isinstance(a, Argument) for a in arguments):
             raise TypeError("all elements need to be Arguments")
         self.__arguments = arguments
+        self.__semantics = semantics
+
+    def getSemantics(self) -> Semantics:
+        return self.__semantics
 
     # get the set of arguments
     def getExtArgument(self) -> set[Argument]:

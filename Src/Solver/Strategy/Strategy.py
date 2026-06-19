@@ -17,7 +17,7 @@ class Strategy(ABC):
     def addSpecialist(self, specialist: Specialist) -> None:
         if not isinstance(specialist, Specialist):
             raise TypeError("need a Specialist Object")
-        self.specialists.append(specialist)
+        self.getListSpecialist().append(specialist)
 
     @abstractmethod
     def solve(self, problem: Problem) -> Solution:
