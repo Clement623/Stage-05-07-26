@@ -26,14 +26,16 @@ class GraphConverter:
             raise TypeError("need a nx.DiGraph object")
 
         af = ArgFramework()
-
+        arguments_map = {}
         # Add arguments (nodes)
         for node in G.nodes():
-            af.addArgument(Argument(node))
+            arg_obj = Argument(node)
+            arguments_map[node] = arg_obj
+            af.addArgument(arg_obj)
 
-        # Add attacks (edges)
+        # 2. Add attacks (edges) using the EXACT SAME instances
         for u, v in G.edges():
-            af.addAttack(Attack(Argument(u), Argument(v)))
+            af.addAttack(Attack(arguments_map[u], arguments_map[v]))
 
         return af
 

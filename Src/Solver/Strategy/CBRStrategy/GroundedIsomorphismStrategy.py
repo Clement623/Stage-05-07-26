@@ -3,11 +3,11 @@ from Src.Solver.Specialist.GroundedSpecialist import GroundedSpecialist
 from Src.Solver.Specialist.GroundedReductionSpecialist import GroundedReductionSpecialist
 from Src.Solver.Specialist.IsomorphismSpecialist import IsomorphismSpecialist
 from Src.Solver.Specialist.BijectionSpecialist import BijectionSpecialist
-from Src.Solver.Specialist.SolutionAdaptationSpecialist.GroundedMergeSolutionSpecialist import GroundedMergeSolutionSpecialist
+from Src.Solver.Specialist.GroundedMergeSolutionSpecialist import GroundedMergeSolutionSpecialist
 from Src.CaseFile.Solutions.BooleanSolution import BooleanSolution
 from Src.CaseFile.Solutions.SetExtensionSolution import SetExtensionSolution
 from Src.CaseFile.Solutions.SingleExtensionSolution import SingleExtensionSolution
-
+from Src.CaseFile.Solutions.UnresolvedSolution import UnresolvedSolution
 
 
 
@@ -15,7 +15,12 @@ class GroundedIsomorphismStrategy(CBRStrategy):
     def __init__(self):
         super().__init__()
 
-    def solve(self, problem):
+    def solve(self, problem, caseBase):
+        if caseBase is None:
+            raise(TypeError('need a caseBase'))
+        else:
+            self.setCaseBase(caseBase)
+        
         grounded_specialist = GroundedSpecialist()
         grounded_specialist.setProblem(problem)
         grounded_ext = grounded_specialist.process()
@@ -37,7 +42,7 @@ class GroundedIsomorphismStrategy(CBRStrategy):
                     
             if is_attacked_by_grounded:
                 return BooleanSolution(False)
-
+        reduced_solution = None
         reduction_specialist = GroundedReductionSpecialist()
         reduction_specialist.setProblem(problem)
         reduction_specialist.setGroundedExtension(grounded_ext)
@@ -54,8 +59,6 @@ class GroundedIsomorphismStrategy(CBRStrategy):
                 
                 question = problem.getQuestion()
                 base_question = matching_case.getProblem().getQuestion()
-                
-                reduced_solution = None
                 
                 if type(question) is type(base_question):
                     for mapping in all_mappings:
@@ -80,7 +83,8 @@ class GroundedIsomorphismStrategy(CBRStrategy):
                                     raise TypeError("Unsupported solution type from matching case")
                             break
             else:
-                return new_problem
+                return UnresolvedSolution(new_problem)
+            
         merge_specialist = GroundedMergeSolutionSpecialist()
         merge_specialist.setGroundedExtension(grounded_ext)
         merge_specialist.setReducedSolution(reduced_solution)

@@ -2,16 +2,21 @@ from Src.Solver.Strategy.CBRStrategy.CBRStrategy import CBRStrategy
 from Src.Solver.Specialist.LinearPatternSpecialist import LinearPatternSpecialist
 from Src.Solver.Specialist.IsomorphismSpecialist import IsomorphismSpecialist
 from Src.Solver.Specialist.BijectionSpecialist import BijectionSpecialist
-from Src.Solver.Specialist.SolutionAdaptationSpecialist.PolarityDecompressionSpecialist import PolarityDecompressionSpecialist
+from Src.Solver.Specialist.PolarityDecompressionSpecialist import PolarityDecompressionSpecialist
 from Src.CaseFile.Solutions.BooleanSolution import BooleanSolution
 from Src.CaseFile.Solutions.SetExtensionSolution import SetExtensionSolution
 from Src.CaseFile.Solutions.SingleExtensionSolution import SingleExtensionSolution
-
+from Src.CaseFile.Solutions.UnresolvedSolution import UnresolvedSolution
 class LinearPatternIsomorphismStrategy(CBRStrategy):
     def __init__(self):
         super().__init__()
 
-    def solve(self, problem):
+    def solve(self, problem, caseBase):
+        if caseBase is None:
+            raise(TypeError('need a caseBase'))
+        else:
+            self.setCaseBase(caseBase)
+        
         pattern_specialist = LinearPatternSpecialist()
         pattern_specialist.setProblem(problem)
         compressed_problem = pattern_specialist.process()
@@ -20,12 +25,13 @@ class LinearPatternIsomorphismStrategy(CBRStrategy):
             return None
 
         iso_specialist = IsomorphismSpecialist()
-        iso_specialist.setCaseBase(self.getCaseBase())
+        iso_specialist.setCaseBase(caseBase)
         iso_specialist.setProblem(compressed_problem)
         isomorphisms = iso_specialist.process()
 
         if not isomorphisms:
-            return compressed_problem
+            return UnresolvedSolution(compressed_problem)
+        
         matching_case,all_mapping = isomorphisms
 
         all_merged_extensions = set()

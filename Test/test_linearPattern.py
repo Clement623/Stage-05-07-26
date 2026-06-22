@@ -58,7 +58,6 @@ sol_ext_base = SetExtensionSolution({
 cb.addCase(Case(prob_ext_base, sol_ext_base))
 
 strategy = LinearPatternIsomorphismStrategy()
-strategy.setCaseBase(cb)
 
 
 print("\n── Tests : LinearPatternIsomorphismStrategy ──")
@@ -66,17 +65,17 @@ print(f"The ArgFramework source is: {af_target}")
 print(f"We have a case base: {cb}")
 
 prob_linear_1 = Problem(Situation(af_target), XinExtension(Argument(1), sem))
-sol_1 = strategy.solve(prob_linear_1)
+sol_1 = strategy.solve(prob_linear_1, cb)
 test("The argument 1 evaluation with linear pattern", 
      sol_1 is not None and isinstance(sol_1, BooleanSolution) and sol_1.getAnswer() is True)
 
 prob_linear_2 = Problem(Situation(af_target), XinExtension(Argument(4), sem))
-sol_2 = strategy.solve(prob_linear_2)
+sol_2 = strategy.solve(prob_linear_2, cb)
 test("The argument 4 evaluation with linear pattern", 
      sol_2 is not None and isinstance(sol_2, BooleanSolution) and sol_2.getAnswer() is True)
 
 prob_linear_all = Problem(Situation(af_target), AllExtensions(sem))
-sol_3 = strategy.solve(prob_linear_all)
+sol_3 = strategy.solve(prob_linear_all, cb)
 for ext in sol_3.getAnswer():
     print(ext.getExtArgument())
 test("Enumeration with linear pattern and isomorphism", 
@@ -99,10 +98,9 @@ cb.addCase(Case(prob_ext_base2, sol_ext_base2))
 
 
 strategy = LinearPatternIsomorphismStrategy()
-strategy.setCaseBase(cb)
 
 prob_linear_all2=Problem(Situation(af_grand_target),AllExtensions(sem))
-sol_4=strategy.solve(prob_linear_all2)
+sol_4=strategy.solve(prob_linear_all2, cb)
 for ext in sol_4.getAnswer():
     print(ext.getExtArgument())
 test("Enumeration with linear pattern and isomorphism", 

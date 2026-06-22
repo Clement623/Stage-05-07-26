@@ -13,7 +13,6 @@ class CBRStrategy(Strategy):
     def setCaseBase(self,base):
         self.__caseBase=base
 
-
     @abstractmethod
     def solve(self):
         pass

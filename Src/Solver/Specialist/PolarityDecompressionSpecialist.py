@@ -1,8 +1,8 @@
-from .SolutionAdaptationSpecialist import SolutionAdaptationSpecialist
+from Src.Solver.Specialist.Specialist import Specialist
 from Src.CaseFile.Solutions.SetExtensionSolution import SetExtensionSolution
 from Src.ExtFile.Extension import Extension
 
-class PolarityDecompressionSpecialist(SolutionAdaptationSpecialist):
+class PolarityDecompressionSpecialist(Specialist):
     def __init__(self):
         super().__init__()
         self.__patterns = None

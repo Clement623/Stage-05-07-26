@@ -35,6 +35,13 @@ class CaseBase:
             raise ValueError(f"{case} not in Cases")
         self.__cases.remove(case)
 
+    def get_candidates_by_hash_and_question(self, graph_hash: str, question_type: type) -> list:
+        candidates = []
+        for c in self.__cases:
+            if c.getHashGraph() == graph_hash and type(c.getProblem().getQuestion()) is question_type:
+                candidates.append(c)
+        return candidates
+
     def __repr__(self):
         nb_cases = len(self.__cases)
         cases_repr = ", ".join(repr(c) for c in self.__cases)

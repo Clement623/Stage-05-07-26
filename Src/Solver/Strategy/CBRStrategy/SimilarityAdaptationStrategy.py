@@ -1,4 +1,4 @@
-from .Strategy import Strategy
+from Src.Solver.Strategy.Strategy import Strategy
 
 
 class SimilarityAdaptationStrategy(Strategy):

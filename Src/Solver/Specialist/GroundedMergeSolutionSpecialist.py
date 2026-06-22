@@ -1,11 +1,11 @@
-from .SolutionAdaptationSpecialist import SolutionAdaptationSpecialist
+from Src.Solver.Specialist.Specialist import Specialist
 from Src.ExtFile.Extension import Extension
 from Src.CaseFile.Solutions.Solution import Solution
 from Src.CaseFile.Solutions.BooleanSolution import BooleanSolution
 from Src.CaseFile.Solutions.SetExtensionSolution import SetExtensionSolution
 from Src.CaseFile.Solutions.SingleExtensionSolution import SingleExtensionSolution
 
-class GroundedMergeSolutionSpecialist(SolutionAdaptationSpecialist):
+class GroundedMergeSolutionSpecialist(Specialist):
     def __init__(self):
         super().__init__()
         self.__grounded_extension = None

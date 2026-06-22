@@ -53,33 +53,31 @@ sol_ext_base = SetExtensionSolution({
 cb.addCase(Case(prob_ext_base, sol_ext_base))
 
 strategy = GroundedIsomorphismStrategy()
-strategy.setCaseBase(cb)
-
-
 print("\n── Tests : GroundedIsomorphismStrategy ──")
 print(f'The ArgFramework source is: {af_target}')
 print(f'We have a case base: {cb}')
 #the Argument 1 is in the grounded so he needs to be True 
 prob_grounded_in = Problem(Situation(af_target), XinExtension(Argument(1), sem))
-sol_1 = strategy.solve(prob_grounded_in)
+sol_1 = strategy.solve(prob_grounded_in, cb)
 test("The argument 1 is in the grounded extension", 
      sol_1 is not None and isinstance(sol_1, BooleanSolution) and sol_1.getAnswer() is True)
 
 #the Argument 2 is attack by a argument of the grounded is never in a extension
 prob_grounded_out = Problem(Situation(af_target), XinExtension(Argument(2), sem))
-sol_2 = strategy.solve(prob_grounded_out)
+sol_2 = strategy.solve(prob_grounded_out, cb)
 test("Argument 2 is attack by a Argument of the Grounded extension", 
      sol_2 is not None and isinstance(sol_2, BooleanSolution) and sol_2.getAnswer() is False)
 
 #The Argument 3 is not attack not in the grounded
 prob_reduced_iso = Problem(Situation(af_target), XinExtension(Argument(3), sem))
-sol_3 = strategy.solve(prob_reduced_iso)
+sol_3 = strategy.solve(prob_reduced_iso, cb)
 test("Argument 3 is resolve with the isomorph problem", 
      sol_3 is not None and isinstance(sol_3, BooleanSolution) and sol_3.getAnswer() is True)
 
 prob_all_extensions = Problem(Situation(af_target), AllExtensions(sem))
-sol_4 = strategy.solve(prob_all_extensions)
-print(sol_4)
+sol_4 = strategy.solve(prob_all_extensions, cb)
+for ext in sol_4.getAnswer():
+    print(ext.getExtArgument())
 test("Enumeration with isomorphism", sol_4 is not None and isinstance(sol_4, SetExtensionSolution) and sol_4.getAnswer() == {Extension({Argument(1), Argument(3)}, semantics=sem), Extension({Argument(1), Argument(4)}, semantics=sem)})
 
 
