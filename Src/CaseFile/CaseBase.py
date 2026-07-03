@@ -2,9 +2,11 @@ from Src.CaseFile.Case import Case
 
 
 class CaseBase:
-    # Initialize an empty list of cases
+    # Initialize an empty list of cases and a hash index
     def __init__(self):
         self.__cases = []
+        # wl_hash → [Case, ...]
+        self.__index: dict[str, list[Case]] = {}
 
     # Get the list of all cases
     def getListCase(self) -> list:
@@ -26,6 +28,7 @@ class CaseBase:
             raise TypeError("case need to be a Case")
         if not self.isExactlyInBase(case):
             self.__cases.append(case)
+            self.__index.setdefault(case.getHashGraph(), []).append(case)
 
     # Remove a case from the case base
     def removeCase(self, case: Case) -> None:
@@ -34,13 +37,14 @@ class CaseBase:
         if not self.isExactlyInBase(case):
             raise ValueError(f"{case} not in Cases")
         self.__cases.remove(case)
+        bucket = self.__index.get(case.getHashGraph(), [])
+        bucket.remove(case)
+        if not bucket:
+            del self.__index[case.getHashGraph()]
 
-    def get_candidates_by_hash_and_question(self, graph_hash: str, question_type: type) -> list:
-        candidates = []
-        for c in self.__cases:
-            if c.getHashGraph() == graph_hash and type(c.getProblem().getQuestion()) is question_type:
-                candidates.append(c)
-        return candidates
+    def get_candidates_by_hash(self, graph_hash: str) -> list:
+        # Additional filters (by question type, degree sequence, SCC count) can be added here
+        return list(self.__index.get(graph_hash, []))
 
     def __repr__(self):
         nb_cases = len(self.__cases)

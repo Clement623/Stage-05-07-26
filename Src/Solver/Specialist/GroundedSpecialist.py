@@ -13,11 +13,13 @@ class GroundedSpecialist(Specialist):
         to_be_in = set()
         af = self.getProblem().getSituation().getAF()
 
+        # Initialize all arguments as undecided, count their attackers
         for x in af.getArguments():
             label[x] = "undecided"
             attackers = af.getAttackedBy().get(x, set())
             und_pre[x] = len(attackers)
 
+            # Arguments with no attackers are immediately accepted
             if und_pre[x] == 0:
                 to_be_in.add(x)
 
@@ -25,17 +27,21 @@ class GroundedSpecialist(Specialist):
             x = to_be_in.pop()
             label[x] = "in"
 
+            # Everything attacked by an "in" argument is rejected
             targets_of_x = af.getTarget().get(x, set())
             for y in targets_of_x:
                 if label.get(y) != "out":
                     label[y] = "out"
 
+                    # Rejecting y reduces the threat on everything y was attacking
                     targets_of_y = af.getTarget().get(y, set())
                     for z in targets_of_y:
                         if label.get(z) == "undecided":
                             und_pre[z] -= 1
+                            # If z has no more active attackers, it can be accepted
                             if und_pre[z] == 0:
                                 to_be_in.add(z)
 
+        # Collect all accepted arguments into the grounded extension
         grounded_set = {x for x in af.iterArgument() if label.get(x) == "in"}
         return Extension(grounded_set, Grounded())

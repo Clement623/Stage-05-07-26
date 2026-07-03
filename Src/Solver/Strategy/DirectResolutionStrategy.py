@@ -1,7 +1,14 @@
+from Src.CaseFile.Solutions.UnresolvedProbem import UnresolvedProblem
+
 from .Strategy import Strategy
-from Src.CaseFile.Solutions.UnresolvedSolution import UnresolvedSolution
+
 
 class DirectResolutionStrategy(Strategy):
-    def solve(self, problem,caseBase):
-        sol=UnresolvedSolution()
+    """
+    Strategy that resolve a problem from scratch, use in last
+    """
+
+    def solve(self, problem, caseBase):
+        """Return an unresolved problem temporally, change with a solution after"""
+        sol = UnresolvedProblem()
         return sol
