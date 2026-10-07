@@ -15,9 +15,9 @@ class BooleanSolution(Solution):
         return self.__answer
 
     # check the egality with two BooleanSolution
-    def __eq__(self, Solution2) -> bool:
-        if isinstance(Solution2, BooleanSolution):
-            return self.getAnswer() == Solution2.getAnswer()
+    def __eq__(self, other) -> bool:
+        if isinstance(other, BooleanSolution):
+            return self.getAnswer() == other.getAnswer()
         return False
 
     def __str__(self) -> str:

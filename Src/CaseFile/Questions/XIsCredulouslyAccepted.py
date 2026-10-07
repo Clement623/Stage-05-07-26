@@ -3,17 +3,17 @@ from Src.Core.Argument import Argument
 from Src.ExtFile.Semantics import Semantics
 
 
-class XisSkepticallyAccepted(Question):
+class XIsCredulouslyAccepted(Question):
 
-    def __init__(self, argument, semantic):
+    def __init__(self, argument, semantics):
         """Init the question with an argument and a semantics."""
         self.__argument = argument
-        self.__semantic = semantic
+        self.__semantics = semantics
         self.answerType = bool
 
     def isEquivalentUnderMapping(self, other_question, mapping: dict) -> bool:
         """Check if two questions are equivalent under a given mapping."""
-        if not isinstance(other_question, XisSkepticallyAccepted):
+        if not isinstance(other_question, XIsCredulouslyAccepted):
             return False
         if self.getSemantics() != other_question.getSemantics():
             return False

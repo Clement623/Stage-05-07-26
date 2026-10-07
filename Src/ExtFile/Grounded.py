@@ -5,11 +5,11 @@ from Src.ExtFile.Semantics import Semantics
 
 
 class Grounded(Semantics):
-    def isExtension(self, AF: ArgFramework, extension: Extension) -> bool:
+    def isExtension(self, af: ArgFramework, extension: Extension) -> bool:
         pass
 
-    def isCredulouslyAccepted(self, AF: ArgFramework, arg: Argument) -> bool:
+    def isCredulouslyAccepted(self, af: ArgFramework, arg: Argument) -> bool:
         pass
 
-    def isSkepticallyAccepted(self, AF: ArgFramework, arg: Argument) -> bool:
+    def isSkepticallyAccepted(self, af: ArgFramework, arg: Argument) -> bool:
         pass

@@ -39,10 +39,10 @@ class ArgFramework:
     def isInAttacks(self, att: Attack) -> bool:
         return att in self.getAttacks()
 
-    def iterArgument(self) -> iter:
+    def iterArguments(self) -> iter:
         return iter(self.getArguments())
 
-    def iterAttack(self) -> iter:
+    def iterAttacks(self) -> iter:
         return iter(self.getAttacks())
 
     # Method to add a argument to the framework
@@ -67,7 +67,7 @@ class ArgFramework:
             # Remove all attack if the arg is in
             to_remove = {
                 att
-                for att in self.iterAttack()
+                for att in self.iterAttacks()
                 if att.getFromArg() == arg or att.getToArg() == arg
             }
             for att in to_remove:
@@ -102,11 +102,11 @@ class ArgFramework:
             self.getTarget()[att.getFromArg()].discard(att.getToArg())
             self.getAttackedBy()[att.getToArg()].discard(att.getFromArg())
 
-    def __eq__(self, AF2) -> bool:
-        if isinstance(AF2, ArgFramework):
+    def __eq__(self, other) -> bool:
+        if isinstance(other, ArgFramework):
             return (
-                self.getArguments() == AF2.getArguments()
-                and self.getAttacks() == AF2.getAttacks()
+                self.getArguments() == other.getArguments()
+                and self.getAttacks() == other.getAttacks()
             )
         return False
     

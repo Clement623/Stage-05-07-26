@@ -6,11 +6,11 @@ from Src.ExtFile.Semantics import Semantics
 
 class Stable(Semantics):
 
-    def isCredulouslyAccepted(self, AF: ArgFramework, arg: Argument) -> bool:
+    def isCredulouslyAccepted(self, af: ArgFramework, arg: Argument) -> bool:
         """Check if the argument is credulously accepted (not implemented)."""
         pass
 
-    def isSkepticallyAccepted(self, AF: ArgFramework, arg: Argument) -> bool:
+    def isSkepticallyAccepted(self, af: ArgFramework, arg: Argument) -> bool:
         """Check if the argument is skeptically accepted (not implemented)."""
         pass
 

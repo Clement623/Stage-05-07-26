@@ -14,7 +14,7 @@ class PolarityDecompressionSpecialist(Specialist):
         # List of polarity patterns to apply
         self.__patterns = None
         # Solution found on the reduced problem
-        self.__reduced_solution = None
+        self.__reducedSolution = None
 
     def setPatterns(self, patterns: list):
         """Set the list of polarity patterns."""
@@ -26,11 +26,11 @@ class PolarityDecompressionSpecialist(Specialist):
 
     def setReducedSolution(self, reduced_sol):
         """Set the solution of the reduced problem."""
-        self.__reduced_solution = reduced_sol
+        self.__reducedSolution = reduced_sol
 
     def getReducedSolution(self):
         """Return the solution of the reduced problem."""
-        return self.__reduced_solution
+        return self.__reducedSolution
 
     def process(self):
         """Expand each extension using the polarity patterns."""
@@ -53,7 +53,7 @@ class PolarityDecompressionSpecialist(Specialist):
 
             # Apply patterns to each extension
             for ext in base_answers:
-                current_args = set(ext.getExtArgument())
+                current_args = set(ext.getExtArguments())
 
                 for pattern in patterns:
                     start_arg = pattern[0]

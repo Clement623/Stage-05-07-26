@@ -23,5 +23,5 @@ class SetExtensionSolution(Solution):
         return hash(frozenset(self.getAnswer()))
 
     def __repr__(self) -> str:
-        extensions_str = [str(ext.getExtArgument()) for ext in self.getAnswer()]
+        extensions_str = [str(ext.getExtArguments()) for ext in self.getAnswer()]
         return f"SetExtensionSolution([{', '.join(extensions_str)}])"

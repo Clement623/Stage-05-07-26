@@ -18,9 +18,9 @@ class Orchestrator:
             raise TypeError("need a Strategy Object")
         self.__strategy = strategy
 
-    def solve(self, problem: Problem, caseBase=None) -> Solution | Problem:
+    def solve(self, problem: Problem, case_base=None) -> Solution | Problem:
         """Solve the problem using the current strategy."""
         if self.__strategy is None:
             raise ValueError("The strategy not be defined")
 
-        return self.__strategy.solve(problem, caseBase)
+        return self.__strategy.solve(problem, case_base)

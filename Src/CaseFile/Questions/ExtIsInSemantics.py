@@ -18,7 +18,7 @@ class ExtIsInSemantics(Question):
         if self.getSemantics() != other_question.getSemantics():
             return False
 
-        for arg in self.getExtension().getExtArgument():
+        for arg in self.getExtension().getExtArguments():
             if arg not in other_question.getExtension():
                 return False
 

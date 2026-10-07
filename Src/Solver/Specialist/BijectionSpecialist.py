@@ -28,18 +28,18 @@ class BijectionSpecialist(Specialist):
         else:
             self.__mapping = mapping
 
-    def apply_to_argument(self, arg: Argument) -> Argument:
+    def applyToArgument(self, arg: Argument) -> Argument:
         # Look up the argument's index in the mapping and return the translated argument
         target_index = self.getMapping().get(arg.getIndex())
         if target_index is not None:
             return Argument(target_index)
         return None
 
-    def apply_to_extension(self, extension: Extension) -> Extension:
+    def applyToExtension(self, extension: Extension) -> Extension:
         # Translate each argument in the extension and collect the results
         translated_args = set()
-        for arg in extension.iterExtArgument():
-            translated_arg = self.apply_to_argument(arg)
+        for arg in extension.iterExtArguments():
+            translated_arg = self.applyToArgument(arg)
             if translated_arg is not None:
                 translated_args.add(translated_arg)
 
@@ -49,9 +49,9 @@ class BijectionSpecialist(Specialist):
         element = self.getElement()
         # Dispatch to the right translation method based on the element's type
         if isinstance(element, Argument):
-            return self.apply_to_argument(element)
+            return self.applyToArgument(element)
         elif isinstance(element, Extension):
-            return self.apply_to_extension(element)
+            return self.applyToExtension(element)
         elif isinstance(element, set):
             # Recursively translate each item in the set
             translated_set = set()

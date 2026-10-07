@@ -5,18 +5,18 @@ from Src.Solver.Specialist.Specialist import Specialist
 
 class Strategy(ABC):
     def __init__(self):
-        self.__ListSpecialist = []
+        self.__specialists = []
 
-    def getListSpecialist(self) -> list[Specialist]:
-        return self.__ListSpecialist
+    def getSpecialists(self) -> list[Specialist]:
+        return self.__specialists
 
-    def iterSpecialist(self) -> iter:
-        return iter(self.getListSpecialist())
+    def iterSpecialists(self) -> iter:
+        return iter(self.getSpecialists())
 
     def addSpecialist(self, specialist: Specialist) -> None:
         if not isinstance(specialist, Specialist):
             raise TypeError("need a Specialist Object")
-        self.getListSpecialist().append(specialist)
+        self.getSpecialists().append(specialist)
 
     @abstractmethod
     def solve(self, problem: Problem) -> Solution:

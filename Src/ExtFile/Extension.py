@@ -16,23 +16,23 @@ class Extension:
         return self.__semantics
 
     # get the set of arguments
-    def getExtArgument(self) -> set[Argument]:
+    def getExtArguments(self) -> set[Argument]:
         return self.__arguments
 
     # get a iter object of the set of arguments
-    def iterExtArgument(self) -> iter:
-        return iter(self.getExtArgument())
+    def iterExtArguments(self) -> iter:
+        return iter(self.getExtArguments())
 
     # test if a argument is in a extension
     def isInExtension(self, arg: Argument) -> bool:
         if not isinstance(arg, Argument):
             raise TypeError("need a argument in input")
-        return arg in self.getExtArgument()
+        return arg in self.getExtArguments()
 
     def __eq__(self, other):
         if isinstance(other, Extension):
-            return self.getExtArgument() == other.getExtArgument()
+            return self.getExtArguments() == other.getExtArguments()
         return False
 
     def __hash__(self):
-        return hash(tuple(sorted(arg.getIndex() for arg in self.getExtArgument())))
+        return hash(tuple(sorted(arg.getIndex() for arg in self.getExtArguments())))

@@ -49,7 +49,7 @@ class WCCRecompositionSpecialist(Specialist):
 
                 # Merge arguments together
                 for ext in combo:
-                    combined_args.update(ext.getExtArgument())
+                    combined_args.update(ext.getExtArguments())
 
                 merged_extensions.add(Extension(combined_args, semantics=semantics))
 

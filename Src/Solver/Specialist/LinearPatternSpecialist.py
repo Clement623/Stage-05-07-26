@@ -25,27 +25,27 @@ class LinearPatternSpecialist(Specialist):
         """Return the list of detected patterns."""
         return self.__patterns
 
-    def findLinearpattern(self):
+    def findLinearPattern(self):
         """Find all linear chains of arguments in the AF."""
         problem = self.getProblem()
         af = problem.getSituation().getAF()
-        target, attackedBy = af.getTarget(), af.getAttackedBy()
+        target, attacked_by = af.getTarget(), af.getAttackedBy()
 
         patterns = []
         visited = set()
 
-        for arg in af.iterArgument():
+        for arg in af.iterArguments():
             # Skip arguments already part of a detected pattern
             if arg in visited:
                 continue
 
             # An interior node of a linear chain has exactly one attacker and one target
-            if len(target.get(arg, set())) == 1 and len(attackedBy.get(arg, set())) == 1:
+            if len(target.get(arg, set())) == 1 and len(attacked_by.get(arg, set())) == 1:
                 # Expand rightward along the chain
                 pattern_right = [arg]
                 arg_attacked = list(target[arg])[0]
 
-                while len(target.get(arg_attacked, set())) == 1 and len(attackedBy.get(arg_attacked, set())) == 1:
+                while len(target.get(arg_attacked, set())) == 1 and len(attacked_by.get(arg_attacked, set())) == 1:
                     # Stop if we loop back (cycle detected)
                     if arg_attacked in pattern_right:
                         break
@@ -57,14 +57,14 @@ class LinearPatternSpecialist(Specialist):
 
                 # Expand leftward along the chain
                 pattern_left = []
-                arg_attacker = list(attackedBy[arg])[0]
+                arg_attacker = list(attacked_by[arg])[0]
 
-                while len(target.get(arg_attacker, set())) == 1 and len(attackedBy.get(arg_attacker, set())) == 1:
+                while len(target.get(arg_attacker, set())) == 1 and len(attacked_by.get(arg_attacker, set())) == 1:
                     # Stop if we loop back or overlap with the right side
                     if arg_attacker in pattern_left or arg_attacker in pattern_right:
                         break
                     pattern_left.append(arg_attacker)
-                    arg_attacker = list(attackedBy[arg_attacker])[0]
+                    arg_attacker = list(attacked_by[arg_attacker])[0]
 
                 # arg_attacker is now the left endpoint of the chain
                 pattern_left.append(arg_attacker)
@@ -90,7 +90,7 @@ class LinearPatternSpecialist(Specialist):
             return None
 
         # Detect all linear patterns in the AF
-        self.setPatterns(self.findLinearpattern())
+        self.setPatterns(self.findLinearPattern())
         af = problem.getSituation().getAF()
         patterns = self.getPatterns()
 
@@ -106,12 +106,12 @@ class LinearPatternSpecialist(Specialist):
         # Build a new AF without the interior nodes
         new_af = ArgFramework()
 
-        for arg in af.iterArgument():
+        for arg in af.iterArguments():
             if arg not in args_to_remove:
                 new_af.addArgument(arg)
 
         # Keep all attacks between non-removed arguments
-        for attacker in af.iterArgument():
+        for attacker in af.iterArguments():
             if attacker in args_to_remove:
                 continue
             for target in af.getTarget()[attacker]:
