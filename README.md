@@ -63,7 +63,7 @@ att(a2,a3).
 
 ##  Utilisation
 
-> **Note :** actuellement, le fichier `main.py` lance uniquement une fonction `test1()` codée en dur.
+> **Note :** actuellement, le fichier `main.py` lance uniquement une fonction `runDemo()` codée en dur.
 
 ### Exemple d'exécution actuelle
 

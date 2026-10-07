@@ -7,15 +7,15 @@ import networkx as nx
 class GraphConverter:
     # Convert an argumentation framework into a networkx graph
     @staticmethod
-    def afToNetworkX(Af: ArgFramework) -> nx.DiGraph:
-        if not isinstance(Af, ArgFramework):
+    def afToNetworkX(af: ArgFramework) -> nx.DiGraph:
+        if not isinstance(af, ArgFramework):
             raise TypeError("need a ArgFramework object")
         G = nx.DiGraph()
         # Add arguments as nodes in the graph
-        for arg in Af.iterArgument():
+        for arg in af.iterArguments():
             G.add_node(arg.getIndex())
         # Add attacks as directed edges in the graph
-        for att in Af.getAttacks():
+        for att in af.getAttacks():
             G.add_edge(att.getFromArg().getIndex(), att.getToArg().getIndex())
         return G
 

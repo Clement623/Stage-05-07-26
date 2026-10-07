@@ -19,7 +19,7 @@ class Complete(Semantics):
             return False
 
         # Must defend all its own arguments
-        if not all(self.defends(af, ext, arg) for arg in ext.iterExtArgument()):
+        if not all(self.defends(af, ext, arg) for arg in ext.iterExtArguments()):
             return False
 
         # Must contain every argument it defends (no missing defended argument)
@@ -30,10 +30,10 @@ class Complete(Semantics):
 
         return True
 
-    def isCredulouslyAccepted(self, AF: ArgFramework, arg: Argument) -> bool:
+    def isCredulouslyAccepted(self, af: ArgFramework, arg: Argument) -> bool:
         """Check if the argument is credulously accepted (not implemented)."""
         pass
 
-    def isSkepticallyAccepted(self, AF: ArgFramework, arg: Argument) -> bool:
+    def isSkepticallyAccepted(self, af: ArgFramework, arg: Argument) -> bool:
         """Check if the argument is skeptically accepted (not implemented)."""
         pass

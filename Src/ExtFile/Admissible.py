@@ -6,11 +6,11 @@ from Src.Core.Argument import Argument
 
 class Admissible(Semantics):
 
-    def isCredulouslyAccepted(self, AF: ArgFramework, arg: Argument) -> bool:
+    def isCredulouslyAccepted(self, af: ArgFramework, arg: Argument) -> bool:
         """Check if the argument is credulously accepted (not implemented)."""
         pass
 
-    def isSkepticallyAccepted(self, AF: ArgFramework, arg: Argument) -> bool:
+    def isSkepticallyAccepted(self, af: ArgFramework, arg: Argument) -> bool:
         """Check if the argument is skeptically accepted (not implemented)."""
         pass
 
@@ -27,4 +27,4 @@ class Admissible(Semantics):
             return False
 
         # And every argument in the extension must be defended by it
-        return all(self.defends(af, ext, arg) for arg in ext.iterExtArgument())
+        return all(self.defends(af, ext, arg) for arg in ext.iterExtArguments())

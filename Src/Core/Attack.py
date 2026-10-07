@@ -3,13 +3,13 @@ from Src.Core.Argument import Argument
 
 class Attack:
     # Initialize an attack with a source argument and a target argument
-    def __init__(self, fromArg: Argument, toArg: Argument):
-        if not isinstance(fromArg, Argument):
+    def __init__(self, from_arg: Argument, to_arg: Argument):
+        if not isinstance(from_arg, Argument):
             raise TypeError("fromArg need to be an Argument")
-        if not isinstance(toArg, Argument):
+        if not isinstance(to_arg, Argument):
             raise TypeError("toArg need to be an Argument")
-        self.__fromArg = fromArg
-        self.__toArg = toArg
+        self.__fromArg = from_arg
+        self.__toArg = to_arg
 
     # Represent the attack as a string like source->target
     def __repr__(self) -> str:

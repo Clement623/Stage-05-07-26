@@ -13,11 +13,11 @@ class Problem:
         self.__question = question
 
     # Check if two problems are equal
-    def __eq__(self, probleme2) -> bool:
-        if isinstance(probleme2, Problem):
+    def __eq__(self, other) -> bool:
+        if isinstance(other, Problem):
             return (
-                self.getSituation() == probleme2.getSituation()
-                and self.getQuestion() == probleme2.getQuestion()
+                self.getSituation() == other.getSituation()
+                and self.getQuestion() == other.getQuestion()
             )
         return False
 

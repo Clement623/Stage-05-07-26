@@ -18,26 +18,26 @@ class IsomorphismSpecialist(Specialist):
             raise TypeError("need a CaseBase")
         self.__base = base
 
-    def _is_compatible_question(self, question_a, question_b) -> bool:
+    def _isCompatibleQuestion(self, question_a, question_b) -> bool:
         # For now, only exact question type match is considered compatible
         # This method can be extended later to support question hierarchy or partial compatibility
         return type(question_a) is type(question_b)
 
     def process(self) -> tuple:
         # Convert the problem's AF to a graph and compute its hash for fast lookup
-        Af = self.getProblem().getSituation().getAF()
-        HashGraph = GraphConverter.computeWeisfeilerLehmanHash(Af)
+        af = self.getProblem().getSituation().getAF()
+        graph_hash = GraphConverter.computeWeisfeilerLehmanHash(af)
         
         # Filter the case base to only structurally similar cases
-        candidates = self.getCaseBase().get_candidates_by_hash(HashGraph)
+        candidates = self.getCaseBase().getCandidatesByHash(graph_hash)
         if not candidates:
             return None
 
         # Sort candidates: exact question type match first
         question = self.getProblem().getQuestion()
-        candidates.sort(key=lambda c: not self._is_compatible_question(c.getProblem().getQuestion(), question))
+        candidates.sort(key=lambda c: not self._isCompatibleQuestion(c.getProblem().getQuestion(), question))
 
-        G1 = GraphConverter.afToNetworkX(Af)
+        G1 = GraphConverter.afToNetworkX(af)
 
         # Check each candidate for a true graph isomorphism
         for c in candidates:

@@ -1,4 +1,4 @@
-from Src.CaseFile.Solutions.UnresolvedProbem import UnresolvedProblem
+from Src.CaseFile.Solutions.UnresolvedProblem import UnresolvedProblem
 from Src.CaseFile.Solutions.BooleanSolution import BooleanSolution
 from Src.CaseFile.Solutions.SetExtensionSolution import SetExtensionSolution
 from Src.CaseFile.Solutions.SingleExtensionSolution import SingleExtensionSolution
@@ -18,12 +18,12 @@ class GroundedIsomorphismStrategy(CBRStrategy):
     def __init__(self):
         super().__init__()
 
-    def solve(self, problem, caseBase):
+    def solve(self, problem, case_base):
         # Make sure a case base was provided
-        if caseBase is None:
+        if case_base is None:
             raise (TypeError("need a caseBase"))
         else:
-            self.setCaseBase(caseBase)
+            self.setCaseBase(case_base)
 
         # Compute the grounded extension of the problem
         grounded_specialist = GroundedSpecialist()
@@ -43,7 +43,7 @@ class GroundedIsomorphismStrategy(CBRStrategy):
             target_dict = af.getTarget()
 
             # Check if any grounded argument attacks the target
-            for g_arg in grounded_ext.iterExtArgument():
+            for g_arg in grounded_ext.iterExtArguments():
                 if target_arg in target_dict.get(g_arg, set()):
                     is_attacked_by_grounded = True
                     break

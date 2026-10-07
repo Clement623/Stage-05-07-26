@@ -9,18 +9,18 @@ class CaseBase:
         self.__index: dict[str, list[Case]] = {}
 
     # Get the list of all cases
-    def getListCase(self) -> list:
+    def getCases(self) -> list:
         return self.__cases
 
     # Get an iterator for the list of cases
-    def iterListCase(self) -> iter:
-        return iter(self.getListCase())
+    def iterCases(self) -> iter:
+        return iter(self.getCases())
 
     # Check if a case is already in the case base
     def isExactlyInBase(self, case: Case) -> bool:
         if not isinstance(case, Case):
             raise TypeError("case need to be a Case")
-        return case in self.getListCase()
+        return case in self.getCases()
 
     # Add a case to the case base if it is not already there
     def addCase(self, case: Case) -> None:
@@ -28,7 +28,7 @@ class CaseBase:
             raise TypeError("case need to be a Case")
         if not self.isExactlyInBase(case):
             self.__cases.append(case)
-            self.__index.setdefault(case.getHashGraph(), []).append(case)
+            self.__index.setdefault(case.getGraphHash(), []).append(case)
 
     # Remove a case from the case base
     def removeCase(self, case: Case) -> None:
@@ -37,12 +37,12 @@ class CaseBase:
         if not self.isExactlyInBase(case):
             raise ValueError(f"{case} not in Cases")
         self.__cases.remove(case)
-        bucket = self.__index.get(case.getHashGraph(), [])
+        bucket = self.__index.get(case.getGraphHash(), [])
         bucket.remove(case)
         if not bucket:
-            del self.__index[case.getHashGraph()]
+            del self.__index[case.getGraphHash()]
 
-    def get_candidates_by_hash(self, graph_hash: str) -> list:
+    def getCandidatesByHash(self, graph_hash: str) -> list:
         # Additional filters (by question type, degree sequence, SCC count) can be added here
         return list(self.__index.get(graph_hash, []))
 

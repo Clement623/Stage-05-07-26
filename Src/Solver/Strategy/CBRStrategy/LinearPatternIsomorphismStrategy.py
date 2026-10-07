@@ -1,4 +1,4 @@
-from Src.CaseFile.Solutions.UnresolvedProbem import UnresolvedProblem
+from Src.CaseFile.Solutions.UnresolvedProblem import UnresolvedProblem
 from Src.CaseFile.Solutions.BooleanSolution import BooleanSolution
 from Src.CaseFile.Solutions.SetExtensionSolution import SetExtensionSolution
 from Src.CaseFile.Solutions.SingleExtensionSolution import SingleExtensionSolution
@@ -15,12 +15,12 @@ class LinearPatternIsomorphismStrategy(CBRStrategy):
     def __init__(self):
         super().__init__()
 
-    def solve(self, problem, caseBase):
+    def solve(self, problem, case_base):
         # Make sure a case base was provided
-        if caseBase is None:
+        if case_base is None:
             raise (TypeError("need a caseBase"))
         else:
-            self.setCaseBase(caseBase)
+            self.setCaseBase(case_base)
 
         # Compress the problem by detecting linear patterns
         pattern_specialist = LinearPatternSpecialist()
@@ -33,7 +33,7 @@ class LinearPatternIsomorphismStrategy(CBRStrategy):
 
         # Look for a structurally isomorphic case in the case base
         iso_specialist = IsomorphismSpecialist()
-        iso_specialist.setCaseBase(caseBase)
+        iso_specialist.setCaseBase(case_base)
         iso_specialist.setProblem(compressed_problem)
         isomorphisms = iso_specialist.process()
 
@@ -41,7 +41,7 @@ class LinearPatternIsomorphismStrategy(CBRStrategy):
         if not isomorphisms:
             return UnresolvedProblem(compressed_problem)
 
-        matching_case, all_mapping = isomorphisms
+        matching_case, all_mappings = isomorphisms
 
         all_merged_extensions = set()
         is_boolean_problem = False
@@ -49,7 +49,7 @@ class LinearPatternIsomorphismStrategy(CBRStrategy):
         had_single_extension = False
 
         # Try each mapping and translate the matching case's solution back
-        for matcher in all_mapping:
+        for mapping in all_mappings:
             old_solution = matching_case.getSolution()
 
             if isinstance(old_solution, BooleanSolution):
@@ -59,7 +59,7 @@ class LinearPatternIsomorphismStrategy(CBRStrategy):
                 break
             else:
                 # Translate the case solution back using the inverse mapping
-                bij_specialist = BijectionSpecialist(matcher, inverse=True)
+                bij_specialist = BijectionSpecialist(mapping, inverse=True)
                 bij_specialist.setElement(old_solution.getAnswer())
                 translated_answer = bij_specialist.process()
 

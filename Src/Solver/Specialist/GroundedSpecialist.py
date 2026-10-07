@@ -43,5 +43,5 @@ class GroundedSpecialist(Specialist):
                                 to_be_in.add(z)
 
         # Collect all accepted arguments into the grounded extension
-        grounded_set = {x for x in af.iterArgument() if label.get(x) == "in"}
+        grounded_set = {x for x in af.iterArguments() if label.get(x) == "in"}
         return Extension(grounded_set, Grounded())

@@ -29,18 +29,18 @@ class Parser:
         # af file
         ext = self.getExtension()
         if ext == "af":
-            self.parseafFile(framework)
+            self.parseAfFile(framework)
         # apx file
         elif ext == "apx":
-            self.parseapxFile(framework)
+            self.parseApxFile(framework)
         return framework
 
     # The parser for the af File, input: framework = ArgFramework object
-    def parseafFile(self, framework) -> None:
+    def parseAfFile(self, framework) -> None:
         # First part, the arguments: p as nb , the regex take off the nb to create arguments
         content = self.getContent()
-        nbArgument = int(re.search(r"\D+(\d+)$", content[0]).group(1))
-        for i in range(1, nbArgument + 1):
+        nb_argument = int(re.search(r"\D+(\d+)$", content[0]).group(1))
+        for i in range(1, nb_argument + 1):
             framework.addArgument(Argument(i))
         # Second part, the attacks
         for attack in content[1:]:
@@ -48,13 +48,13 @@ class Parser:
                 attack = (
                     attack.split()
                 )  # attack is a string like nb nb so split by space
-                fromArg = Argument(int(attack[0]))
-                toArg = Argument(int(attack[1]))
-                framework.addAttack(Attack(fromArg, toArg))
+                from_arg = Argument(int(attack[0]))
+                to_arg = Argument(int(attack[1]))
+                framework.addAttack(Attack(from_arg, to_arg))
                 # Add the attack in the framework
 
     # The parser for the apx File, input: framework = ArgFramework object
-    def parseapxFile(self, framework) -> None:
+    def parseApxFile(self, framework) -> None:
         # process line by line
         content = self.getContent()
         for element in content:
@@ -67,6 +67,6 @@ class Parser:
                     framework.addArgument(Argument(int(arguments[0])))
                 if attacks:
                     # Add attack
-                    fromArg = Argument(int(attacks[0][0]))
-                    toArg = Argument(int(attacks[0][1]))
-                    framework.addAttack(Attack(fromArg, toArg))
+                    from_arg = Argument(int(attacks[0][0]))
+                    to_arg = Argument(int(attacks[0][1]))
+                    framework.addAttack(Attack(from_arg, to_arg))

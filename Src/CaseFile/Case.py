@@ -15,7 +15,7 @@ class Case:
         self.__problem = problem
         self.__solution = solution
         # Compute the hash value of the graph to check for isomorphism
-        self.__hashGraph = GraphConverter.computeWeisfeilerLehmanHash(
+        self.__graphHash = GraphConverter.computeWeisfeilerLehmanHash(
             self.getProblem().getSituation().getAF()
         )
 
@@ -28,14 +28,14 @@ class Case:
         return self.__solution
 
     # Get the graph hash value
-    def getHashGraph(self) -> str:
-        return self.__hashGraph
+    def getGraphHash(self) -> str:
+        return self.__graphHash
 
     # Check if two cases are equal
-    def __eq__(self, case2) -> bool:
-        if isinstance(case2, Case):
+    def __eq__(self, other) -> bool:
+        if isinstance(other, Case):
             return (
-                self.getSolution() == case2.getSolution()
-                and self.getProblem() == case2.getProblem()
+                self.getSolution() == other.getSolution()
+                and self.getProblem() == other.getProblem()
             )
         return False

@@ -16,16 +16,16 @@ class Semantics(ABC):
         pass
 
     @abstractmethod
-    def isCredulouslyAccepted(self, AF: ArgFramework, arg: Argument) -> bool:
+    def isCredulouslyAccepted(self, af: ArgFramework, arg: Argument) -> bool:
         pass
 
     @abstractmethod
-    def isSkepticallyAccepted(self, AF: ArgFramework, arg: Argument) -> bool:
+    def isSkepticallyAccepted(self, af: ArgFramework, arg: Argument) -> bool:
         pass
 
     # Test if a extension is conflictFree
     def isConflictFree(self, af: ArgFramework, ext: Extension) -> bool:
-        for arg in ext.iterExtArgument():
+        for arg in ext.iterExtArguments():
             for attacked in af.getTarget()[arg]:
                 if ext.isInExtension(attacked):
                     return False

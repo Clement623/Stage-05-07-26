@@ -2,7 +2,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
-from Src.CaseFile.Solutions.UnresolvedProbem import UnresolvedProblem
+from Src.CaseFile.Solutions.UnresolvedProblem import UnresolvedProblem
 from Src.CaseFile.Case import Case
 from Src.CaseFile.CaseBase import CaseBase
 from Src.CaseFile.Problem import Problem
@@ -27,7 +27,7 @@ from Src.Solver.Strategy.CBRStrategy.LinearPatternIsomorphismStrategy import (
 from Src.Solver.Strategy.DirectResolutionStrategy import DirectResolutionStrategy
 
 
-def makeAF(*args, attacks=[]):
+def makeArgFramework(*args, attacks=[]):
     af = ArgFramework()
     for i in args:
         af.addArgument(Argument(i))
@@ -36,7 +36,7 @@ def makeAF(*args, attacks=[]):
     return af
 
 
-def solveProblem(problem, caseBase):
+def solveProblem(problem, case_base):
     # Step 1: Decompose the global problem into Weakly Connected Components (WCC)
     wcc_specialist = WCCDecompositionSpecialist()
     wcc_specialist.setProblem(problem)
@@ -63,7 +63,7 @@ def solveProblem(problem, caseBase):
 
             # Pass the case base only if the strategy relies on Case-Based Reasoning (CBR)
             if isinstance(strategy, CBRStrategy):
-                solution = orchestrator.solve(problem_to_solve, caseBase)
+                solution = orchestrator.solve(problem_to_solve, case_base)
             else:
                 solution = orchestrator.solve(problem_to_solve, None)
 
@@ -85,13 +85,13 @@ def solveProblem(problem, caseBase):
     return global_solution
 
 
-def test1():
+def runDemo():
     print("Begin the Test")
     cb = CaseBase()
     sem_preferred = Preferred()
 
     # Case 1 initialization
-    af_case = makeAF(1, 2, attacks=[(1, 2), (2, 1)])
+    af_case = makeArgFramework(1, 2, attacks=[(1, 2), (2, 1)])
     problem = Problem(Situation(af_case), AllExtensions(sem_preferred))
     sol_case = SetExtensionSolution(
         {
@@ -102,7 +102,7 @@ def test1():
     cb.addCase(Case(problem, sol_case))
 
     # Case 2 initialization
-    af_case = makeAF(1, 2, 3, attacks=[(1, 2), (2, 1), (2, 3)])
+    af_case = makeArgFramework(1, 2, 3, attacks=[(1, 2), (2, 1), (2, 3)])
     problem = Problem(Situation(af_case), AllExtensions(sem_preferred))
     sol_case = SetExtensionSolution(
         {
@@ -119,7 +119,7 @@ def test1():
         "We have a case base with the case: 1<->2->3 with the solution {{1,3}, {2}} for the question: All preferred extensions"
     )
 
-    af_target = makeAF(
+    af_target = makeArgFramework(
         1,
         2,
         3,
@@ -175,7 +175,7 @@ def test1():
 
 
 def main():
-    test1()
+    runDemo()
 
 
 if __name__ == "__main__":

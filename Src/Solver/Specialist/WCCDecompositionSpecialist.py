@@ -8,7 +8,7 @@ class WCCDecompositionSpecialist(Specialist):
     def __init__(self):
         super().__init__()
 
-    def order_problems(self, problems: list, question) -> list:
+    def orderProblems(self, problems: list, question) -> list:
         # For now, return the problems in the same order as they were decomposed
         # This method can be extended later to sort by question type, component size, etc.
         return problems
@@ -17,7 +17,7 @@ class WCCDecompositionSpecialist(Specialist):
         # Convert the AF to a NetworkX graph and split it into weakly connected components
         af = self.getProblem().getSituation().getAF()
         G = GraphConverter.afToNetworkX(af)
-        listWCCGraph = [G.subgraph(wcc) for wcc in nx.weakly_connected_components(G)]
+        wcc_graphs = [G.subgraph(wcc) for wcc in nx.weakly_connected_components(G)]
         problems_list = []
         
         question = self.getProblem().getQuestion()
@@ -28,15 +28,15 @@ class WCCDecompositionSpecialist(Specialist):
         else:
             target_arg = None
 
-        for wccGraph in listWCCGraph:
+        for wcc_graph in wcc_graphs:
             # Skip components that don't contain the target argument
-            if target_arg is not None and target_arg not in wccGraph.nodes():
+            if target_arg is not None and target_arg not in wcc_graph.nodes():
                 continue
 
             # Convert the NetworkX subgraph back into an ArgFramework
-            sub_af = GraphConverter.networkXToAf(wccGraph)
+            sub_af = GraphConverter.networkXToAf(wcc_graph)
             # Wrap it inside a new Situation and match it with the original question
             sub_problem = Problem(Situation(sub_af), question)
             problems_list.append(sub_problem)
 
-        return self.order_problems(problems_list, question)
+        return self.orderProblems(problems_list, question)

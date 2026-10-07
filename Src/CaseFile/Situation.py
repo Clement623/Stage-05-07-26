@@ -6,14 +6,14 @@ class Situation:
     def __init__(self, framework: ArgFramework):
         if not isinstance(framework, ArgFramework):
             raise TypeError("framework need to be a Argument Framework")
-        self.__AF = framework
+        self.__af = framework
 
     # get the ArgFramework
     def getAF(self) -> ArgFramework:
-        return self.__AF
+        return self.__af
 
     # check the egality of two Situation Object
-    def __eq__(self, framework2) -> bool:
-        if isinstance(framework2, Situation):
-            return self.getAF() == framework2.getAF()
+    def __eq__(self, other) -> bool:
+        if isinstance(other, Situation):
+            return self.getAF() == other.getAF()
         return False

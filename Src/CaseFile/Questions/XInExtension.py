@@ -4,7 +4,7 @@ from Src.ExtFile.Semantics import Semantics
 
 
 # Question of the type: x in Stable Extension or x in Preferred Extension
-class XinExtension(Question):
+class XInExtension(Question):
     # A xInExtension Question take one argument and a Semantics in input
     def __init__(self, argument: Argument, semantics: Semantics):
         # check the type entry
@@ -29,7 +29,7 @@ class XinExtension(Question):
 
     # check if the question is equivalent after a mapping
     def isEquivalentUnderMapping(self, other_question, mapping: dict) -> bool:
-        if not isinstance(other_question, XinExtension):
+        if not isinstance(other_question, XInExtension):
             return False
         if self.getSemantics() != other_question.getSemantics():
             return False
@@ -39,9 +39,9 @@ class XinExtension(Question):
 
         return mapped_index == other_question.getArgument().getIndex()
 
-    # check the egality in two XinExtension object
+    # check the egality in two XInExtension object
     def __eq__(self, other) -> bool:
-        if isinstance(other, XinExtension):
+        if isinstance(other, XInExtension):
             return (
                 self.getArgument() == other.getArgument()
                 and self.getSemantics() == other.getSemantics()
